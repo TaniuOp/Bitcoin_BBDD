@@ -1,0 +1,65 @@
+/* TIPOGRAFÍA */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+/* CSS HEADER */
+
+#divHeader{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 400px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav{
+    width: 70px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a{
+    color:black;
+    text-decoration: dashed;
+}
+
+.comprar{
+    padding: 20px;
+}
+
+.usuario{
+    padding: 20px;
+}
+
+/* CSS CONTENIDO INDEX */
+
+#divInformacion{
+    width: auto;
+    position: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* CSS CONTENIDO COMPRA */
+
+#divCompra{
+    width: auto;
+    position: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* CSS CONTENIDO USUARIO */
+
+#divUsuario{
+    width: auto;
+    position: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
