@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "name": "bitcoin_bbdd",
+  "description": "Ejercicio de roles con creación y manipulación de BBDD para una empresa que vende BitCoins  Equipo: Christian, Frampe y Taniu",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaniuOp/Bitcoin_BBDD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaniuOp/Bitcoin_BBDD/issues"
+  },
+  "homepage": "https://github.com/TaniuOp/Bitcoin_BBDD#readme"
+}
