@@ -1,3 +1,7 @@
+/* TIPOGRAFÍA */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
 /* CSS HEADER */
 
 #divHeader{
@@ -28,6 +32,7 @@
     display:flex;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a{
@@ -40,6 +45,7 @@ a{
 #divInformacion{
     width: auto;
     position: fixed;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* CSS CONTENIDO COMPRA */
@@ -47,6 +53,7 @@ a{
 #divCompra{
     width: auto;
     position: fixed;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* CSS CONTENIDO USUARIO */
@@ -54,4 +61,5 @@ a{
 #divUsuario{
     width: auto;
     position: fixed;
+    font-family: 'Open Sans', sans-serif;
 }
