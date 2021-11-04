@@ -9,16 +9,25 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="./assets/favicon.png" type="favicon">
 
 </head>
 
 <body>
 
-    <a href="./index.html" id="informacionBitcoins">Información</a>
-
-    <h1>Pide información sobre BitCoins</h1>
+    <div id="divHeader">
+        <header class="classHeader">
+            <a href="./index.html"><img src="./assets/etoro_logo.svg" alt="logo" class="logo"></a>
+            <nav class="nav">
+                <a href="./pages/compra.html">Comprar</a>
+                <a href="./pages/usuario.html">Usuario</a>
+            </nav>
+        </header>
+    </div>
 
     <div id="divInformacion">
+        <h1>Pide información sobre BitCoins</h1>
         <fieldset id="fieldsetInformacion">
             <form id="formInformacion">
                 <label for="name">Nombre</label>
@@ -46,9 +55,6 @@
             </form>
         </fieldset>
     </div>
-
-    <a href="./pages/compra.html" id="compraBitcoins">Compra</a>
-    <a href="./pages/usuario.html" id="usuarioBitcoins">Usuario</a>
 
     <!-- Script JS -->
     <script src="./script.js"></script>

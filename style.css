@@ -1,4 +1,57 @@
+/* CSS HEADER */
+
+#divHeader{
+    /* width: auto;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;*/
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 400px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav{
+    width: 70px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a{
+    color:black;
+    text-decoration: dashed;
+}
+
+/* CSS CONTENIDO INDEX */
+
 #divInformacion{
-    width: 200px;
-    
+    width: auto;
+    position: fixed;
+}
+
+/* CSS CONTENIDO COMPRA */
+
+#divCompra{
+    width: auto;
+    position: fixed;
+}
+
+/* CSS CONTENIDO USUARIO */
+
+#divUsuario{
+    width: auto;
+    position: fixed;
 }
