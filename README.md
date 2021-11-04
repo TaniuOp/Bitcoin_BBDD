@@ -9,10 +9,12 @@ Somos una empresa que vende BitCoins.
 El proyecto consta de 3 partes: 
 
 1- El cliente pide información sobre el bitcoin 
+
 	- Datos obligatorios: Nombre, apellido, email
 	- Datos opcionales: DNI, teléfono, dirección, cuantos Bitcoin quisiera comprar 
 	
 2- El cliente compra 
+
 	- Pedimos los datos de usuario (en este caso todos son obligatorios) 
 		* Nombre, Apellido, DNI, mail, teléfono, dirección
 		* Resumen Compra 
@@ -22,6 +24,7 @@ El proyecto consta de 3 partes:
 	- Se le genera una contraseña automática de 10 caracteres para que pueda ir a extraer sus BitCoins 
 
 3- El cliente extrae los BitCoins del “cajero”
+
 	- Pedimos autenticación 
 		* DNI 
 		* Contraseña 
