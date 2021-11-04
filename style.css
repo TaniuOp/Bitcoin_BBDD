@@ -5,14 +5,6 @@
 /* CSS HEADER */
 
 #divHeader{
-    /* width: auto;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    position: fixed;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;*/
     display:flex;
     flex-wrap: wrap;
     align-items: center;
@@ -38,6 +30,14 @@
 a{
     color:black;
     text-decoration: dashed;
+}
+
+.comprar{
+    padding: 20px;
+}
+
+.usuario{
+    padding: 20px;
 }
 
 /* CSS CONTENIDO INDEX */
