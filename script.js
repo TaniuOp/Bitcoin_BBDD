@@ -19,7 +19,7 @@ connection.connect((err)=> {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pages/compra.html');
+    res.sendFile(__dirname + '/index.html');
   });
 // let query = 'SELECT * from Bitcoins';
 // connection.query(query, (err, rows) => {
@@ -30,30 +30,36 @@ app.get('/', (req, res) => {
 
 // FUNCION PARA CREACION DE CLIENTE EN BASE DE DATOS
 
+app.get('/compra', (req,res) =>{
+    res.sendFile(__dirname + '/pages/compra.html')
+})
+app.get('/cajero', (req,res) =>{
+    res.sendFile(__dirname + '/pages/cajero.html')
+})
+
 
 app.post('/create', urlencodedParser, (req, res) => {
     let query = `INSERT INTO Clientes 
-    (Nombre, Apellido,Email,DNI,Telefono, Direccion) VALUES (?, ?, ?, ?, ?, ?);`;
+    (Nombre, Apellido,Email,DNI,Telefono, Direccion, Bitcoins) VALUES (?, ?, ?, ?, ?, ?, ?);`;
     //console.log('Database:', req.body.database, '\nCollection: ', req.body.collectionName, '\nName: ', req.body.userName, '\nlastName: ', req.body.lastName);
     res.send(req.body);
-            // Value to be inserted
-            let userName = req.body.name;
-            let userLastName = req.body.lastName;
-            let userEmail = req.body.email
-            let userDocument = req.body.dni;
-            let userPhone = req.body.telefono
-            let userAddress = req.body.direccion
-            
-      //Insertar informacion en base de datos
-    connection.query(query, [userName, userLastName, userEmail, userDocument, userPhone, userAddress ], (err, rows) => {
+    // Value to be inserted
+    let userName = req.body.name;
+    let userLastName = req.body.lastName;
+    let userEmail = req.body.email
+    let userDocument = req.body.dni;
+    let userPhone = req.body.telefono
+    let userAddress = req.body.direccion
+    let bitCoins = req.body.bitcoin
+    
+    //Insertar informacion en base de datos
+    connection.query(query, [userName, userLastName, userEmail, userDocument, userPhone, userAddress, bitCoins ], (err, rows) => {
         if (err) throw err;
-    connection.query(query2)
-        console.log("Row inserted with id = "
-            + rows.insertId);
-        
+        console.log(`Muchas gracias ${userName} por comprar en nuestra pagina. Tus ${bitCoins} Bitcoins han sido registrados`);        
     });
-      
-    })
-    app.listen(3000);
+    
+})
+
+app.listen(3000);
 
 
