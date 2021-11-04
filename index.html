@@ -29,7 +29,7 @@
     <div id="divInformacion">
         <h1>Pide información sobre BitCoins</h1>
         <fieldset id="fieldsetInformacion">
-            <form id="formInformacion">
+            <form id="formInformacion" action='/info' method="post">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" id="name" required><br>
     
@@ -48,10 +48,10 @@
                 <label for="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion"><br>
     
-                <label for="bitcoin">Bitcoins</label>
+                <label for="bitcoin">How many Bitcoins are you interested in buying</label>
                 <input type="number" name="bitcoin" id="bitcoin"><br>
     
-                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="submit" name="submit" id="submit" value="Enviar"><br>
             </form>
         </fieldset>
     </div>

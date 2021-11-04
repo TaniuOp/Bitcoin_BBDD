@@ -6,8 +6,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'TiendaBitCoins'
+    password: 'root', //Modificar en cada PC 
+    database: 'TiendaBitCoins',
+    port: 8889 //Modificar en Taniu
 });
 connection.connect((err)=> {
     if(!err){
@@ -60,6 +61,44 @@ app.post('/create', urlencodedParser, (req, res) => {
     
 })
 
-app.listen(3000);
 
 
+// MONGO DB PARA CAPTAR LEADS (INFO / INDEX) 
+
+// MONGO DB
+const url = "mongodb://localhost:27017/";
+const mongo = require('mongodb');
+const MongoClient = mongo.MongoClient;
+
+// Variables de mi base de datos 
+const myDatabase = "Bitcoins"
+const MyCollection = "Leads"
+
+// CREAR DOCUMENTO DENTRO DE UNA COLECCION 
+app.post('/info', urlencodedParser, (req, res) => {
+    console.log('DB Name:', myDatabase, '\nCollection Name: ', MyCollection);
+    res.send(req.body);
+//Se declara el objeto para poder insertarlo en al coleción 
+    const dbDocumentdata = { 
+    "Name": req.body.name, 
+    "Last name": req.body.apellido,
+    "Email": req.body.email,
+    "DNI":req.body.dni,
+    "Phone": req.body.telefono,
+    "Address": req.body.direccion,
+    "Bitcoins": req.body.bitcoin
+    }; 
+
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        let getMyDB  = db.db(myDatabase);
+        getMyDB.collection(MyCollection).insertOne(dbDocumentdata, function(err, res) {
+        if (err) throw err;
+        console.log("User added to Leads DB");
+        db.close();
+        });
+    });
+  });
+  
+
+  app.listen(3000);
