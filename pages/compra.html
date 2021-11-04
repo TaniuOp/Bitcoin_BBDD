@@ -20,12 +20,12 @@
 
     <div id="divCompra">
         <fieldset id="fieldsetCompra">
-            <form id="formCompra">
+            <form id="formCompra" action='/create' method="post">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" id="name" required><br>
     
                 <label for="apellido">Apellidos</label>
-                <input type="text" name="apellido" id="apellido" required><br>
+                <input type="text" name="lastName" id="lastName" required><br>
     
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required><br>
@@ -42,7 +42,7 @@
                 <label for="bitcoin">Bitcoins</label>
                 <input type="number" name="bitcoin" id="bitcoin" required><br>
     
-                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="submit" name="submit" id="submit" value="Enviar"><br>
             </form>
         </fieldset>
     </div>
