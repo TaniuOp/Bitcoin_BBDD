@@ -16,14 +16,36 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const auth = getAuth();
 
 // // CREAR USUARIO
 // let userDocument = req.body.dni;
 // let randomPassword = Math.floor(100000 + Math.random() * 900000);
 
-let userDocument = "Juan";
+let userDocument = "juan@gmail.com";
 let randomPassword = 123;
+
+// app.post('/create', urlencodedParser, (req, res) => { 
+// createUserWithEmailAndPassword(auth, "juan@gmail.com", 12345)
+// .then((userCredential) => {
+//   const user = userCredential.user;
+//   console.log("Creado correctamente")
+// })
+// .catch((error) => {
+//   const errorCode = error.code;
+//   const errorMessage = error.message;
+//     });
+
+//   })
+
+
+  const firebase = require('firebase-admin');
+
+  firebase.auth().defaultAuth.createUser({
+    email: req.body.email,
+    password: req.body.password,
+    displayName: req.body.username,
+  })
 
 // app.post('/create', urlencodedParser, (req, res) => {
 // createUserWithEmailAndPassword(auth, userDocument, randomPassword)
@@ -40,20 +62,8 @@ let randomPassword = 123;
 // })
 
 
-let userManual = (req, res) => {
-    createUserWithEmailAndPassword(auth, userDocument, randomPassword)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log("Creado correctamente")
-      registroToLogin();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorCode + errorMessage)
-    });
-}
-    userManual()
+
+
 // CREAR USUARIO
   // document.getElementById("buttonSubmit").addEventListener("click",()=>{
   //     let email = document.getElementById("rUsuario").value
