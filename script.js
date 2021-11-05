@@ -6,10 +6,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: 'root', //Modificar en cada PC 
-    password: 'password',
+    password: 'root', //Modificar en cada PC 
+    // password: 'password',
     database: 'TiendaBitCoins',
-    // port: 8889 //Modificar en Taniu
+    port: 8889 //Modificar en Taniu
 });
 connection.connect((err)=> {
     if(!err){
