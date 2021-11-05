@@ -18,10 +18,10 @@
 
     <div id="divHeader">
         <header class="classHeader">
-            <a href="/"><img src="./assets/etoro_logo.svg" alt="logo" class="logo"></a>
+            <!-- <a href="/"><img src="./assets/etoro_logo.svg" alt="logo" class="logo"></a> -->
             <nav class="nav">
-                <a href="/compra">Comprar</a>
-                <a href="/cajero">Cajero</a>
+                <a href="/compra">Comprar Bitcoins</a> <br>
+                <a href="/cajero">Ya tengo cuenta: Ir al Cajero</a>
             </nav>
         </header>
     </div>
@@ -29,14 +29,14 @@
     <div id="divInformacion">
         <h1>Pide información sobre BitCoins</h1>
         <fieldset id="fieldsetInformacion">
-            <form id="formInformacion">
-                <label for="name">Nombre</label>
+            <form id="formInformacion" action='/info' method="post">
+                <label for="name">Nombre*</label>
                 <input type="text" name="name" id="name" required><br>
     
-                <label for="apellido">Apellidos</label>
+                <label for="apellido">Apellidos*</label>
                 <input type="text" name="apellido" id="apellido" required><br>
     
-                <label for="email">Email</label>
+                <label for="email">Email*</label>
                 <input type="email" name="email" id="email" required><br>
     
                 <label for="dni">DNI</label>
@@ -48,11 +48,12 @@
                 <label for="direccion">Dirección</label>
                 <input type="text" name="direccion" id="direccion"><br>
     
-                <label for="bitcoin">Bitcoins</label>
+                <label for="bitcoin">How many Bitcoins are you interested in buying</label>
                 <input type="number" name="bitcoin" id="bitcoin"><br>
     
-                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="submit" name="submit" id="submit" value="Enviar"><br>
             </form>
+            <p>Al enviar el form aceptas recibir informacion sobre la venta de Bitcoins</p>
         </fieldset>
     </div>
 
