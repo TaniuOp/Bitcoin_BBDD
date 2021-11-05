@@ -46,20 +46,20 @@
                 <input type="number" name="telefono" id="telefono" required><br>
     
                 <label for="direccion">Dirección*</label>
-                <input type="text" name="direccion" id="direccion" required><br>
+                <input type="text" name="direccion" id="direccion"  onblur="funciona()" required><br>
     
                 <label for="bitcoin">Bitcoins*</label>
                 <input type="number" name="bitcoin" id="bitcoin" required><br>
     
-                <input type="submit" name="submit" id="submit" value="Enviar"><br>
+                <input type="button" name="submit" id="submit" value="Enviar"><br>
             </form>
 
             <p>Una vez realices la compra, se generará una contraseña autimatica de 10 digitos que podras usar para extraer Bitcoins</p>
         </fieldset>
+        <input type="button" value="123" id='button'>
     </div>
 
     <!-- Script JS -->
-    <script src="./script.js"></script>
     <script type="module" src="../auth.js"></script>
 
     
