@@ -106,35 +106,35 @@ app.post('/info', urlencodedParser, (req, res) => {
   app.listen(3000);
 
 
-//FIREBASE 
+// //FIREBASE 
 
-import { initializeApp } from 'firebase/app';
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+// import { initializeApp } from 'firebase/app';
+// import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBCmoeRPQzuqfEEExVX3n75WhyaWdcZDYA",
-  authDomain: "thebridgecoins.firebaseapp.com",
-  projectId: "thebridgecoins",
-  storageBucket: "thebridgecoins.appspot.com",
-  messagingSenderId: "211412097086",
-  appId: "1:211412097086:web:c5481dfc8f0fead117d96f"
-};
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBCmoeRPQzuqfEEExVX3n75WhyaWdcZDYA",
+//   authDomain: "thebridgecoins.firebaseapp.com",
+//   projectId: "thebridgecoins",
+//   storageBucket: "thebridgecoins.appspot.com",
+//   messagingSenderId: "211412097086",
+//   appId: "1:211412097086:web:c5481dfc8f0fead117d96f"
+// };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-var admin = require("firebase-admin");
-var serviceAccount = require("./package.json");
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth();
+// var admin = require("firebase-admin");
+// var serviceAccount = require("./package.json");
 
-firebaseAdmin.auth().createUser({
-    email: "user@example.com",
-    password: "secretPassword"
-  })
-  .then(function(userRecord) {
-    // A UserRecord representation of the newly created user is returned
-    console.log("Successfully created new user:", userRecord.uid);
-  })
-  .catch(function(error) {
-    console.log("Error creating new user:", error);
-  });
+// firebaseAdmin.auth().createUser({
+//     email: "user@example.com",
+//     password: "secretPassword"
+//   })
+//   .then(function(userRecord) {
+//     // A UserRecord representation of the newly created user is returned
+//     console.log("Successfully created new user:", userRecord.uid);
+//   })
+//   .catch(function(error) {
+//     console.log("Error creating new user:", error);
+//   });
