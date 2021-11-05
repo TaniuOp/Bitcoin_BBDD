@@ -38,7 +38,10 @@
     
                 <label for="email">Email*</label>
                 <input type="email" name="email" id="email" required><br>
-    
+
+                <label for="userpassword">Password*</label>
+                <input type="password" name="userpassword" id="userpassword" required><br>
+
                 <label for="dni">DNI*</label>
                 <input type="text" name="dni" id="dni" required><br>
     
@@ -51,16 +54,17 @@
                 <label for="bitcoin">Bitcoins*</label>
                 <input type="number" name="bitcoin" id="bitcoin" required><br>
     
-                <input type="submit" name="submit" id="submit" value="Enviar"><br>
+                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="button" value="Firebase" id='firebaseButton'>
+
             </form>
 
-            <p>Una vez realices la compra, se generará una contraseña automática de 10 digitos que podras usar para extraer Bitcoins</p>
+            <p>Una vez realices la compra, podras usar tu mail y contraseña para extraer Bitcoins en el cajero</p>
         </fieldset>
     </div>
 
     <!-- Script JS -->
-    <script src="./script.js"></script>
-    <script type="module" src="../auth.js"></script>
+    <script type="module" src="../scripts/auth.js"></script>
 
     
 </body>

@@ -30,19 +30,21 @@
         <h1>Tu cuenta</h1>
         <fieldset id="fieldsetUsuario">
             <form id="formUsuario">
-                <label for="dni">DNI</label>
-                <input type="text" name="dni" id="dni" required><br>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" required><br>
     
                 <label for="contraseña">Contraseña</label>
-                <input type="text" name="contraseña" id="contraseña" required><br>
+                <input type="password" name="contrasena" id="contrasena" required><br>
     
-                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="button" value="Login" id='loginFirebase'>
             </form>
         </fieldset>
     </div>
 
     <!-- Script JS -->
-    <script src="./script.js"></script>
+    <!-- <script src="./script.js"></script> -->
+    <script type="module" src="../scripts/login.js"></script>
+
     
 </body>
 </html>

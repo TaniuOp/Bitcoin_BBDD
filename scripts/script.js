@@ -1,14 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const app = express();
+const bodyParser = require('body-parser')
 const mysql = require('mysql');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root', //Modificar en cada PC 
+    // password: 'root', //Modificar en cada PC 
+    password: 'password',
     database: 'TiendaBitCoins',
-    port: 8889 //Modificar en Taniu
+    // port: 8889 //Modificar en Taniu
 });
 connection.connect((err)=> {
     if(!err){
@@ -37,10 +38,9 @@ app.get('/compra', (req,res) =>{
 app.get('/cajero', (req,res) =>{
     res.sendFile(__dirname + '/pages/cajero.html')
 })
-app.get('/index', (req,res) =>{
-    res.sendFile(__dirname + '/')
+app.get('/user', (req, res) =>{
+    res.sendFile(__dirname + '/pages/yourAccount.html')
 })
-
 app.post('/create', urlencodedParser, (req, res) => {
     let query = `INSERT INTO Clientes 
     (Nombre, Apellido,Email,DNI,Telefono, Direccion, Bitcoins) VALUES (?, ?, ?, ?, ?, ?, ?);`;
@@ -62,51 +62,64 @@ app.post('/create', urlencodedParser, (req, res) => {
     });
     
 })
+app.post('/extract', urlencodedParser, (req, res) =>{
+    let query = `CALL filterTodo(?);`
+    let bitCoins = req.body.extract
+    res.send(req.body)
+    connection.query(query, true, (error, results, fields) => {
+        if (error) {
+          return console.error(error.message);
+        }
+        console.log(results[0]);
+      });
+      
+
+})
 
 
 
 // MONGO DB PARA CAPTAR LEADS (INFO / INDEX) 
 
 // MONGO DB
-const url = "mongodb://localhost:27017/";
-const mongo = require('mongodb');
-const MongoClient = mongo.MongoClient;
+// const url = "mongodb://localhost:27017/";
+// const mongo = require('mongodb');
+// const MongoClient = mongo.MongoClient;
 
-// Variables de mi base de datos 
-const myDatabase = "Bitcoins"
-const MyCollection = "Leads"
+// // Variables de mi base de datos 
+// const myDatabase = "Bitcoins"
+// const MyCollection = "Leads"
 
-// CREAR DOCUMENTO DENTRO DE UNA COLECCION 
-app.post('/info', urlencodedParser, (req, res) => {
-    console.log('DB Name:', myDatabase, '\nCollection Name: ', MyCollection);
-    res.send(req.body);
-//Se declara el objeto para poder insertarlo en al coleción 
-    const dbDocumentdata = { 
-    "Name": req.body.name, 
-    "Last name": req.body.apellido,
-    "Email": req.body.email,
-    "DNI":req.body.dni,
-    "Phone": req.body.telefono,
-    "Address": req.body.direccion,
-    "Bitcoins": req.body.bitcoin
-    }; 
+// // CREAR DOCUMENTO DENTRO DE UNA COLECCION 
+// app.post('/info', urlencodedParser, (req, res) => {
+//     console.log('DB Name:', myDatabase, '\nCollection Name: ', MyCollection);
+//     res.send(req.body);
+// //Se declara el objeto para poder insertarlo en al coleción 
+//     const dbDocumentdata = { 
+//     "Name": req.body.name, 
+//     "Last name": req.body.apellido,
+//     "Email": req.body.email,
+//     "DNI":req.body.dni,
+//     "Phone": req.body.telefono,
+//     "Address": req.body.direccion,
+//     "Bitcoins": req.body.bitcoin
+//     }; 
 
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        let getMyDB  = db.db(myDatabase);
-        getMyDB.collection(MyCollection).insertOne(dbDocumentdata, function(err, res) {
-        if (err) throw err;
-        console.log("User added to Leads DB");
-        db.close();
-        });
-    });
-  });
+//     MongoClient.connect(url, function(err, db) {
+//         if (err) throw err;
+//         let getMyDB  = db.db(myDatabase);
+//         getMyDB.collection(MyCollection).insertOne(dbDocumentdata, function(err, res) {
+//         if (err) throw err;
+//         console.log("User added to Leads DB");
+//         db.close();
+//         });
+//     });
+//   });
   
 
   app.listen(3000);
 
 
-// //FIREBASE 
+//FIREBASE 
 
 // import { initializeApp } from 'firebase/app';
 // import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
@@ -122,19 +135,19 @@ app.post('/info', urlencodedParser, (req, res) => {
 // };
 
 // // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth();
-// var admin = require("firebase-admin");
-// var serviceAccount = require("./package.json");
+// // const app = initializeApp(firebaseConfig);
+// // const auth = getAuth();
+// // var admin = require("firebase-admin");
+// // var serviceAccount = require("./package.json");
 
-// firebaseAdmin.auth().createUser({
-//     email: "user@example.com",
-//     password: "secretPassword"
-//   })
-//   .then(function(userRecord) {
-//     // A UserRecord representation of the newly created user is returned
-//     console.log("Successfully created new user:", userRecord.uid);
-//   })
-//   .catch(function(error) {
-//     console.log("Error creating new user:", error);
-//   });
+// // firebaseAdmin.auth().createUser({
+// //     email: "user@example.com",
+// //     password: "secretPassword"
+// //   })
+// //   .then(function(userRecord) {
+// //     // A UserRecord representation of the newly created user is returned
+// //     console.log("Successfully created new user:", userRecord.uid);
+// //   })
+// //   .catch(function(error) {
+// //     console.log("Error creating new user:", error);
+// //   });

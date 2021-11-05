@@ -8,8 +8,15 @@
 </head>
 <body>
     <h1>Tu cuenta</h1>
-    <label for="name">¿Cuántos BitCoins quieres extraer?</label>
-    <input type="number" name="extract" id="extract" required>
+    <form action="/extract" method="post">
+        <label for="name">¿Cuántos BitCoins quieres extraer?</label>
+        <input type="number" name="extract" id="extract" required>
+        <button type="submit" value='Extraer'>Extraer</button>
+    </form>
+
+    <button type="button" value='logout' id="logout">Cerrar sesión</button>
+
 </body>
-<script src="../script.js"></script>
+<!-- <script src="../script.js"></script> -->
+<script type="module" src="../scripts/logout.js"></script>
 </html>
