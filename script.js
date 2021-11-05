@@ -37,10 +37,9 @@ app.get('/compra', (req,res) =>{
 app.get('/cajero', (req,res) =>{
     res.sendFile(__dirname + '/pages/cajero.html')
 })
-app.get('/index', (req,res) =>{
-    res.sendFile(__dirname + '/')
+app.get('/user', (req, res) =>{
+    res.sendFile(__dirname + '/pages/yourAccount.html')
 })
-
 app.post('/create', urlencodedParser, (req, res) => {
     let query = `INSERT INTO Clientes 
     (Nombre, Apellido,Email,DNI,Telefono, Direccion, Bitcoins) VALUES (?, ?, ?, ?, ?, ?, ?);`;
@@ -61,6 +60,17 @@ app.post('/create', urlencodedParser, (req, res) => {
         console.log(`Muchas gracias ${userName} por comprar en nuestra pagina. Tus ${bitCoins} Bitcoins han sido registrados`);        
     });
     
+})
+app.post('/extract', urlencodedParser, (req, res) =>{
+    let query = `UPDATE Clientes SET Bitcoins = ? WHERE id_cliente = 1`
+    let query2 = `SELECT BitCoins from Clientes WHERE id_cliente = 1`
+    res.send(req.body)
+    let bitCoins = req.body.extract
+
+    connection.query(query, bitCoins, (err, rows) =>{
+        console.log(`Has extraido de tu cuenta con x bitCoins: ${bitCoins} bitCoins. Tu saldo actual es x`)
+    } )
+
 })
 
 
