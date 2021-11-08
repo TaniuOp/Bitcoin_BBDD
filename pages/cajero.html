@@ -29,20 +29,15 @@
     <div id="divUsuario">
         <h1>Tu cuenta</h1>
         <fieldset id="fieldsetUsuario">
-            <form id="formUsuario">
-                <label for="dni">DNI</label>
-                <input type="text" name="dni" id="dni" required><br>
+            <form id="formUsuario" action='/login' method="post">
+                <label for="myEmail">Email*</label>
+                <input type="email" name="myEmail" id="myEmail" required><br>
+                <label for="myPassword">Password*</label>
+                <input type="password" name="myPassword" id="myPassword" required><br>
     
-                <label for="contraseña">Contraseña</label>
-                <input type="text" name="contraseña" id="contraseña" required><br>
-    
-                <input type="button" name="submit" id="submit" value="Enviar"><br>
+                <input type="submit" name="login_submit" id="login_submit" value="Login"><br>
             </form>
         </fieldset>
-    </div>
-
-    <!-- Script JS -->
-    <script src="./script.js"></script>
-    
+    </div>    
 </body>
 </html>

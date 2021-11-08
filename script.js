@@ -1,12 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser')
 const app = express();
+const bodyParser = require('body-parser')
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root', //Modificar en cada PC 
+    // password: 'password',
     database: 'TiendaBitCoins',
     port: 8889 //Modificar en Taniu
 });
@@ -29,8 +31,7 @@ app.get('/', (req, res) => {
 //     connection.end();
 // });
 
-// FUNCION PARA CREACION DE CLIENTE EN BASE DE DATOS
-
+// BOTONES DE REDIRECCION 
 app.get('/compra', (req,res) =>{
     res.sendFile(__dirname + '/pages/compra.html')
 })
@@ -40,56 +41,70 @@ app.get('/cajero', (req,res) =>{
 app.get('/user', (req, res) =>{
     res.sendFile(__dirname + '/pages/yourAccount.html')
 })
-app.post('/create', urlencodedParser, (req, res) => {
-    let query = `INSERT INTO Clientes 
-    (Nombre, Apellido,Email,DNI,Telefono, Direccion, Bitcoins) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-    //console.log('Database:', req.body.database, '\nCollection: ', req.body.collectionName, '\nName: ', req.body.userName, '\nlastName: ', req.body.lastName);
+
+// REGISTRO - CREACION DE CLIENTE EN BASE DE DATOS
+
+app.post('/create', urlencodedParser, async (req, res, next) => {
     res.send(req.body);
     // Value to be inserted
-    let userName = req.body.name;
-    let userLastName = req.body.lastName;
+    let userName = req.body.name
+    let userLastName = req.body.lastName
     let userEmail = req.body.email
-    let userDocument = req.body.dni;
+    let userPassword = req.body.userpassword  
+    // const saltRounds = 10; // The cost factor controls how much time is needed to calculate a single BCrypt hash.
+    // let encryptedPassword = await bcrypt.hash(userPassword, hash)
+    let userDocument = req.body.dni
     let userPhone = req.body.telefono
     let userAddress = req.body.direccion
     let bitCoins = req.body.bitcoin
-    
     //Insertar informacion en base de datos
-    connection.query(query, [userName, userLastName, userEmail, userDocument, userPhone, userAddress, bitCoins ], (err, rows) => {
+    let query = `INSERT INTO Clientes 
+    (Nombre, Apellido,Email, Contrasena , DNI, Telefono, Direccion, Bitcoins) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+    connection.query(query, [userName, userLastName, userEmail, userPassword, userDocument, userPhone, userAddress, bitCoins], (err, rows) => {
         if (err) throw err;
         console.log(`Muchas gracias ${userName} por comprar en nuestra pagina. Tus ${bitCoins} Bitcoins han sido registrados`);        
     });
     
 })
+
 app.post('/extract', urlencodedParser, (req, res) =>{
-    let query = `UPDATE Clientes SET Bitcoins = ? WHERE id_cliente = 1`
-    let query2 = `SELECT BitCoins from Clientes WHERE id_cliente = 1`
-    res.send(req.body)
+    let query = `CALL filterTodo(?);`
     let bitCoins = req.body.extract
-
-    connection.query(query, bitCoins, (err, rows) =>{
-        console.log(`Has extraido de tu cuenta con x bitCoins: ${bitCoins} bitCoins. Tu saldo actual es x`)
-    } )
-
+    res.send(req.body)
+    connection.query(query, true, (error, results, fields) => {
+        if (error) {
+          return console.error(error.message);
+        }
+        console.log(results[0]);
+      });
 })
 
 
-
+// LOGIN - CAJERO 
+app.post('/login', urlencodedParser, (req, res)=> {
+    res.send(req.body);
+    let myUserEmail = req.body.myEmail
+    let myUserPassword = req.body.myUserpassword  
+    connection.query('SELECT * FROM Clientes WHERE (Email = ? AND Contrasena = ?)', [myUserEmail, myUserPassword], 
+             (error, results)=> {
+              if (error) throw error;
+              console.log(results)
+            res.end       
+             })
+        });
 // MONGO DB PARA CAPTAR LEADS (INFO / INDEX) 
-
-// MONGO DB
-const url = "mongodb://localhost:27017/";
-const mongo = require('mongodb');
-const MongoClient = mongo.MongoClient;
+    const url = "mongodb://localhost:27017/";
+    const mongo = require('mongodb');
+    const MongoClient = mongo.MongoClient;
 
 // Variables de mi base de datos 
-const myDatabase = "Bitcoins"
-const MyCollection = "Leads"
+    const myDatabase = "Bitcoins"
+    const MyCollection = "Leads"
 
 // CREAR DOCUMENTO DENTRO DE UNA COLECCION 
-app.post('/info', urlencodedParser, (req, res) => {
-    console.log('DB Name:', myDatabase, '\nCollection Name: ', MyCollection);
-    res.send(req.body);
+    app.post('/info', urlencodedParser, (req, res) => {
+        console.log('DB Name:', myDatabase, '\nCollection Name: ', MyCollection);
+        res.send(req.body);
 //Se declara el objeto para poder insertarlo en al coleción 
     const dbDocumentdata = { 
     "Name": req.body.name, 
@@ -116,35 +131,4 @@ app.post('/info', urlencodedParser, (req, res) => {
   app.listen(3000);
 
 
-//FIREBASE 
-
-import { initializeApp } from 'firebase/app';
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBCmoeRPQzuqfEEExVX3n75WhyaWdcZDYA",
-  authDomain: "thebridgecoins.firebaseapp.com",
-  projectId: "thebridgecoins",
-  storageBucket: "thebridgecoins.appspot.com",
-  messagingSenderId: "211412097086",
-  appId: "1:211412097086:web:c5481dfc8f0fead117d96f"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-var admin = require("firebase-admin");
-var serviceAccount = require("./package.json");
-
-firebaseAdmin.auth().createUser({
-    email: "user@example.com",
-    password: "secretPassword"
-  })
-  .then(function(userRecord) {
-    // A UserRecord representation of the newly created user is returned
-    console.log("Successfully created new user:", userRecord.uid);
-  })
-  .catch(function(error) {
-    console.log("Error creating new user:", error);
-  });
+ 

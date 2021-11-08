@@ -2,6 +2,19 @@
 Ejercicio de roles con creación y manipulación de BBDD para una empresa que vende BitCoins 
 Equipo: Christian, Frampe y Taniu
 
+EXPLICACION
+
+Se ha creado una BD para la pantalla de index.html, en la que se se permite pedir información (captar Leads). 
+Hemos decidido usar MongoDB para ello. 
+
+Por otro lado, se ha creado una BD en MySQL para el registro del usuario una vez hace la compra de Bitcoins y el proceso de Login. 
+
+Se ha querido usar Firebase Auht para la autenticación del usuario pero nos hemos encontrado con problemas e incompatibilidades al momento de querer registrar al usuario desde el mismo formulario tanto en Firebase como en MySQL.
+Dado a ello, hemos migrado la autenticación a MySQL. 
+
+
+
+
 
 PROYECTO
 
