@@ -1,5 +1,5 @@
 
-// //FIREBASE 
+//FIREBASE 
  
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
@@ -36,7 +36,6 @@ signInWithEmailAndPassword(auth, email, password)
     alert(errorCode + errorMessage)
   });
 })
-
 
 
 
