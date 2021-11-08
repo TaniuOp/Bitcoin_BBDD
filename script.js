@@ -85,41 +85,13 @@ app.post('/login', urlencodedParser, (req, res)=> {
     res.send(req.body);
     let myUserEmail = req.body.myEmail
     let myUserPassword = req.body.myUserpassword  
-    let query = `SELECT * FROM Clientes WHERE (Email ${myUserEmail} && Contrasena ${myUserPassword})`;
-        // let query = 'SELECT * FROM Clientes WHERE (Email AND Contrasena) VALUES (?, ?)';
-        // let query = 'SELECT * FROM Clientes WHERE (Contrasena = ?)';
-        // connection.query(query, [myUserPassword], 
-        connection.query(query, [myUserEmail, myUserPassword], 
+    connection.query('SELECT * FROM Clientes WHERE (Email = ? AND Contrasena = ?)', [myUserEmail, myUserPassword], 
              (error, results)=> {
               if (error) throw error;
               console.log(results)
             res.end       
-             })});
-
-// // LOGIN 
-// app.post('/login', (req, res)=> {
-//     res.send(req.body);
-//     let userEmail = req.body.email
-//     let userPassword = req.body.userpassword  
-//     // var hash = bcrypt.hashSync(password, 10);
-//     // const dcryptPassword = bcrypt.compareSync(password, hash); 
-//     // if (email && password) {
-//         connection.query('SELECT * FROM Clientes WHERE (Email = ? AND Contrasena = ?)', [userEmail, userPassword], 
-//         (error, results, fields)=> {
-//             if (results.length > 0 ) {
-//                 res.send("Successful");
-//             } else {
-//                 res.send('Incorrect Email and/or Password!');
-//             }           
-//             res.end();
-//         });
-//     // } else {
-//     //     res.send('Please enter Username and Password!');
-//     //     res.end();
-//     }
-// );
-
-
+             })
+        });
 // MONGO DB PARA CAPTAR LEADS (INFO / INDEX) 
     const url = "mongodb://localhost:27017/";
     const mongo = require('mongodb');
